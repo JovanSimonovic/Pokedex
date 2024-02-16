@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import pokedexLogo from "../assets/images/pokedex-logo-small.png";
+import pokedexLogo from "../assets/images/pokedex-logo.jpg";
 
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-red-600 text-white p-0 px-4">
+      <div className="navbar bg-red-600 text-white p-0 px-4 fixed top-0 w-full z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

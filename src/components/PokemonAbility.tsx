@@ -4,7 +4,7 @@ interface AbilityProps {
 
 const PokemonAbility = ({ abilityName }: AbilityProps) => {
   return (
-    <div className={`badge bg-red-600 badge-lg text-white font-semibold p-4 mx-0.5`}>
+    <div className={`badge bg-red-600 badge-lg text-white font-semibold p-4 mx-0.5 mt-1`}>
       {abilityName.toUpperCase().replace("-", " ")}
     </div>
   );

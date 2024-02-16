@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Pokemon from "./Pokemon";
 import { fetchPokemonDetailsList } from "../services/fetchPokemonDetailsList";
 import { Link } from "react-router-dom";
+import BackToTop from "./BackToTop";
 
 interface PokemonDetails {
   id: number;
@@ -55,7 +56,7 @@ const PokemonList = () => {
 
   return (
     <>
-      <div className="flex flex-col bg-gray-100 items-center">
+      <div className="mt-16 flex flex-col items-center bg-gray-200">
         <input
           type="text"
           placeholder="Find your Pokémon"
@@ -87,6 +88,7 @@ const PokemonList = () => {
           </div>
         )}
       </div>
+      <BackToTop/>
     </>
   );
 };

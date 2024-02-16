@@ -48,7 +48,7 @@ const PokemonDetails = () => {
   }, [name]);
 
   return (
-    <div className="flex flex-col bg-gray-100 items-center">
+    <div className="mt-20 bg-gray-200 flex flex-col items-center">
       {pokemonDetails ? (
         <>
           <div className="flex flex-col items-center">
@@ -99,16 +99,16 @@ const PokemonDetails = () => {
             </div>
           </div>
 
-          <div className="mx-auto my-8">
+          <div className="mx-auto my-4">
             <h2 className="text-3xl text-center font-semibold">Abilities</h2>
-            <div className="flex justify-center text-lg mt-2">
+            <div className="flex justify-center flex-wrap text-lg">
               {pokemonDetails.abilities.map(({ ability: { name } }, index) => (
                 <PokemonAbility key={index} abilityName={name} />
               ))}
             </div>
           </div>
 
-          <div className="mb-20">
+          <div>
             {pokemonDetails.stats.map(
               ({ base_stat, stat: { name } }, index) => (
                 <PokemonStat

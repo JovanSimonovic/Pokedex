@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import backgroundVideoLoop from "../assets/videos/home-background-loop.mp4";
-import pokedexLogo from "../assets/images/pokedex-logo-big.png";
+import pokedexLogo from "../assets/images/pokedex-logo.jpg";
 
 const Home = () => {
   return (
     <>
-      <div className="relative">
+      <div>
         <video className="h-dvh w-dvw object-cover" autoPlay loop muted>
           <source src={backgroundVideoLoop} />
         </video>
