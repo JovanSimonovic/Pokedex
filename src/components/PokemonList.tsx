@@ -56,23 +56,23 @@ const PokemonList = () => {
 
   return (
     <>
-      <div className="mt-16 flex flex-col items-center bg-gray-200">
-        <input
-          type="text"
-          placeholder="Find your Pokémon"
-          className="input input-bordered w-full max-w-xs my-4"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-        />
+      <input
+        type="text"
+        placeholder="Find your Pokémon"
+        className="input input-bordered w-full max-w-xs mx-auto mt-20 mb-4 p-4 text-lg"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+      />
+      <div className="flex flex-col justify-center items-center flex-grow">
         {isLoading ? (
-          <div className="flex flex-col items-center mt-40">
+          <>
             <span className="loading loading-spinner loading-lg text-error"></span>
             <p className="text-2xl">Loading Pokémon...</p>
-          </div>
+          </>
         ) : filteredPokemonList.length === 0 ? (
           <p className="text-2xl">Pokémon not found</p>
         ) : (
-          <div className="flex flex-wrap justify-center ">
+          <div className="flex flex-wrap justify-center bg-gray-200">
             {filteredPokemonList.map((pokemon) => (
               <Link
                 to={`/pokemon/${pokemon.name}`}

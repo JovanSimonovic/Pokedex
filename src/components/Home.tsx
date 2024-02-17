@@ -10,7 +10,7 @@ const Home = () => {
           <source src={backgroundVideoLoop} />
         </video>
         <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center m-2">
             <img src={pokedexLogo} alt="pokedex logo big" width="500px" />
             <Link
               to="/pokemonList"
