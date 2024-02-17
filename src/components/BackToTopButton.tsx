@@ -1,12 +1,15 @@
 import { useState } from "react";
 
-const BackToTop = () => {
+const BackToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
+  // checks if the page is scrolled vertically more than 300 pixels
+  // and sets the "isVisible" state variable to true if it is
   const handleScroll = () => {
     return window.scrollY > 300 ? setIsVisible(true) : setIsVisible(false);
   };
 
+  // scrolls the page back to top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -19,7 +22,10 @@ const BackToTop = () => {
   return (
     <>
       {isVisible && (
-        <button className="btn btn-circle fixed right-6 bottom-6 lg:hidden bg-red-600 hover:bg-red-700 text-white" onClick={scrollToTop}>
+        <button
+          className="btn btn-circle fixed right-6 bottom-6 bg-red-600 hover:bg-red-700 text-white"
+          onClick={scrollToTop}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6 bi bi-chevron-up"
@@ -39,4 +45,4 @@ const BackToTop = () => {
   );
 };
 
-export default BackToTop;
+export default BackToTopButton;

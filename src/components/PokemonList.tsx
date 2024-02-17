@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Pokemon from "./Pokemon";
 import { fetchPokemonDetailsList } from "../services/fetchPokemonDetailsList";
 import { Link } from "react-router-dom";
-import BackToTop from "./BackToTop";
+import BackToTopButton from "./BackToTopButton";
 
 interface PokemonDetails {
   id: number;
@@ -88,7 +88,7 @@ const PokemonList = () => {
           </div>
         )}
       </div>
-      <BackToTop/>
+      <BackToTopButton />
     </>
   );
 };
