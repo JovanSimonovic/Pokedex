@@ -36,7 +36,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost">
-            <img src={pokedexLogo} alt="pokedex logo small" width="125px" />
+            <img src={pokedexLogo} alt="pokedex logo" width="125px" />
           </Link>
         </div>
         <div className="navbar-end hidden lg:flex">

@@ -11,7 +11,7 @@ const Home = () => {
         </video>
         <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center">
           <div className="flex flex-col items-center m-2">
-            <img src={pokedexLogo} alt="pokedex logo big" width="500px" />
+            <img src={pokedexLogo} alt="pokedex logo" width="500px" />
             <Link
               to="/pokemonList"
               className="btn btn-wide text-lg bg-red-600 text-white hover:bg-red-700"
