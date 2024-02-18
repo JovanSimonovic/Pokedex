@@ -48,7 +48,7 @@ const PokemonDetails = () => {
   }, [name]);
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="bg-gray-200 mt-20 flex flex-col items-center md:h-screen md:justify-center md:mt-0">
       {pokemonDetails ? (
         <>
           <div className="flex flex-col items-center">
@@ -121,7 +121,7 @@ const PokemonDetails = () => {
           </div>
         </>
       ) : (
-        <div className="text-center">
+        <div className="flex flex-col justify-center items-center h-screen">
           <span className="loading loading-spinner loading-lg text-error"></span>
           <p className="text-2xl">Loading Pokémon details...</p>
         </div>
