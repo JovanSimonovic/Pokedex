@@ -32,11 +32,16 @@ interface PokemonDetails {
   };
 }
 
-export const fetchPokemonDetailsList = async (): Promise<PokemonDetails[]> => {
+const totalPokemonCount = 386
+
+export const fetchPokemonDetailsList = async (offset: number): Promise<PokemonDetails[]> => {
+  const remainingPokemonCount = totalPokemonCount - offset;
+  const limit = remainingPokemonCount > 40 ? 40 : remainingPokemonCount;
+
   // fetches the API response containing pokemon data and
   // assigns fetched data to the "fetchedPokemons" array
   const response = await axios.get(
-    "https://pokeapi.co/api/v2/pokemon?limit=386"
+    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
   );
   const fetchedPokemons: PokemonList[] = response.data.results;
 
