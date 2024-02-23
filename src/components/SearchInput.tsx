@@ -8,7 +8,7 @@ const SearchInput = ({ inputText, setInputText }: SearchInputProps) => {
     <input
       type="text"
       placeholder="Find your Pokémon"
-      className="input input-bordered w-full max-w-xs mx-auto mt-20 mb-4 p-4 text-lg"
+      className="input input-bordered w-full max-w-xs p-4 text-lg"
       value={inputText}
       onChange={(e) => setInputText(e.target.value)}
     />

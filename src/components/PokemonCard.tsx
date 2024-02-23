@@ -3,7 +3,7 @@ interface PokemonList {
   imageUrl: string;
 }
 
-const Pokemon = ({ name, imageUrl }: PokemonList) => {
+const PokemonCard = ({ name, imageUrl }: PokemonList) => {
   return (
     <>
       <div className="card card-compact bg-base-100 shadow-md transform transition duration-300 hover:scale-105 hover:cursor-pointer p-2">
@@ -28,4 +28,4 @@ const Pokemon = ({ name, imageUrl }: PokemonList) => {
   );
 };
 
-export default Pokemon;
+export default PokemonCard;

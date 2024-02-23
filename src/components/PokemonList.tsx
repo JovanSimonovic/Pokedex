@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchPokemonDetailsList } from "../services/fetchPokemonDetailsList";
+import { fetchAdditionalPokemon } from "../utils/pokeApiUtils";
+import { fetchAllPokemon } from "../utils/pokeApiUtils";
 import SearchInput from "./SearchInput";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Pokemon from "./Pokemon";
+import PokemonCard from "./PokemonCard";
 import BackToTopButton from "./BackToTopButton";
+import FilterByType from "./FilterByType";
 
 interface PokemonDetails {
   id: number;
@@ -29,7 +31,11 @@ interface PokemonDetails {
     };
   }>;
   sprites: {
-    front_default: string;
+    other: {
+      "official-artwork": {
+        front_default: string;
+      }
+    }
   };
 }
 
@@ -44,7 +50,7 @@ const PokemonList = () => {
   useEffect(() => {
     const fetchPokemonData = async () => {
       const fetchedPokemonDetails: PokemonDetails[] =
-        await fetchPokemonDetailsList(offset);
+        await fetchAllPokemon();
       setPokemonData(fetchedPokemonDetails);
       setIsLoading(false);
     };
@@ -54,7 +60,7 @@ const PokemonList = () => {
   // fetches additional list of pokemon names and urls
   const fetchMorePokemonData = async () => {
     const newOffset = offset + 40;
-    const newData = await fetchPokemonDetailsList(newOffset);
+    const newData = await fetchAdditionalPokemon(newOffset);
 
     setPokemonData([...pokemonData, ...newData]);
     setOffset(newOffset);
@@ -64,6 +70,9 @@ const PokemonList = () => {
     }
   };
 
+
+  // TODO: Figure out how to query pokemon based on the input while having infinite scrolling running in the background. Best bet would probably be fetching from an API with name as argument "api_url/pokemon/{name}" and to fetch every time a user changes the value
+
   // filters the list of pokemon based on the input value
   const filteredPokemonList = pokemonData.filter((pokemon) =>
     inputText.toLowerCase() === ""
@@ -71,9 +80,13 @@ const PokemonList = () => {
       : pokemon.name.includes(inputText.trim().toLowerCase())
   );
 
+
   return (
     <>
-      <SearchInput inputText={inputText} setInputText={setInputText} />
+      <div className="flex flex-wrap justify-center items-center mt-20 mb-4">
+        <SearchInput inputText={inputText} setInputText={setInputText} />
+        <FilterByType />
+      </div>
       <div className="flex flex-col justify-center items-center md:flex-grow">
         {isLoading ? (
           <div className="text-center max-md:mt-24">
@@ -83,12 +96,12 @@ const PokemonList = () => {
         ) : filteredPokemonList.length === 0 ? (
           <p className="text-2xl max-md:mt-24">Pokémon not found</p>
         ) : (
-          <InfiniteScroll
-            dataLength={pokemonData.length}
-            next={fetchMorePokemonData}
-            hasMore={hasMore}
-            loader={null}
-          >
+          // <InfiniteScroll
+          //   dataLength={pokemonData.length}
+          //   next={fetchMorePokemonData}
+          //   hasMore={hasMore}
+          //   loader={null}
+          // >
             <div className="flex flex-wrap justify-center bg-gray-200">
               {filteredPokemonList.map((pokemon) => (
                 <Link
@@ -96,14 +109,14 @@ const PokemonList = () => {
                   key={pokemon.id}
                   className="m-2"
                 >
-                  <Pokemon
+                  <PokemonCard
                     name={pokemon.name}
-                    imageUrl={pokemon.sprites.front_default}
+                    imageUrl={pokemon.sprites.other["official-artwork"].front_default}
                   />
                 </Link>
               ))}
             </div>
-          </InfiniteScroll>
+          // </InfiniteScroll>
         )}
       </div>
       <BackToTopButton />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSinglePokemonDetails } from "../services/fetchSinglePokemonDetails";
+import { fetchPokemonByName } from "../utils/pokeApiUtils";
 import PokemonType from "./PokemonType";
 import PokemonStat from "./PokemonStat";
 import PokemonAbility from "./PokemonAbility";
@@ -28,7 +28,11 @@ interface PokemonDetails {
     };
   }>;
   sprites: {
-    front_default: string;
+    other: {
+      "official-artwork": {
+        front_default: string;
+      }
+    }
   };
 }
 
@@ -40,7 +44,7 @@ const PokemonDetails = () => {
   useEffect(() => {
     const fetchPokemonDetails = async () => {
       if (name) {
-        const pokemonDetails = await fetchSinglePokemonDetails(name);
+        const pokemonDetails = await fetchPokemonByName(name);
         setPokemonDetails(pokemonDetails);
       }
     };
@@ -53,7 +57,7 @@ const PokemonDetails = () => {
         <>
           <div className="flex flex-col items-center">
             <img
-              src={pokemonDetails.sprites.front_default}
+              src={pokemonDetails.sprites.other["official-artwork"].front_default}
               alt={`${pokemonDetails.name} image`}
               width="200px"
               height="200px"
