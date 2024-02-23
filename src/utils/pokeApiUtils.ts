@@ -42,7 +42,7 @@ export const fetchAllPokemon = async (): Promise<PokemonDetails[]> => {
     // fetches the API response containing pokemon data and
     // assigns fetched data to the "fetchedPokemons" array
     const response = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=10000`
+      `https://pokeapi.co/api/v2/pokemon?limit=1025`
     );
     const fetchedPokemons: PokemonList[] = response.data.results;
 
@@ -59,7 +59,6 @@ export const fetchAllPokemon = async (): Promise<PokemonDetails[]> => {
     const fetchedPokemonDetails: PokemonDetails[] = pokemonDetailsResponses.map(
       (response) => response.data
     );
-    console.log(fetchedPokemonDetails);
 
     return fetchedPokemonDetails;
   } catch (error) {

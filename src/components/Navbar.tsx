@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import pokedexLogo from "../assets/images/pokedex-logo.jpg";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Navbar = () => {
   return (
     <>
-      <div className="navbar bg-red-600 text-white p-0 px-4 fixed top-0 w-full z-10">
+      <div className="navbar flex justify-center bg-red-600 text-white p-0 px-4 fixed top-0 w-full z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,7 +40,7 @@ const Navbar = () => {
             <img src={pokedexLogo} alt="pokedex logo" width="125px" />
           </Link>
         </div>
-        <div className="navbar-end hidden lg:flex">
+        <div className="hidden lg:flex lg:navbar-center">
           <ul className="menu menu-horizontal text-lg font-semibold">
             <li>
               <Link to="/">HOME</Link>
@@ -49,6 +50,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
+        <ThemeSwitch />
       </div>
     </>
   );

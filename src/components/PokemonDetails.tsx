@@ -52,15 +52,15 @@ const PokemonDetails = () => {
   }, [name]);
 
   return (
-    <div className="bg-gray-200 mt-20 flex flex-col items-center md:h-screen md:justify-center md:mt-0">
+    <div className="mt-20 flex flex-col items-center md:h-screen md:justify-center md:mt-0">
       {pokemonDetails ? (
         <>
           <div className="flex flex-col items-center">
             <img
               src={pokemonDetails.sprites.other["official-artwork"].front_default}
               alt={`${pokemonDetails.name} image`}
-              width="200px"
-              height="200px"
+              width="250px"
+              height="250px"
             />
             <div className="text-xl font-semibold">
               #{pokemonDetails.id.toString().padStart(3, "0")}

@@ -34,8 +34,8 @@ interface PokemonDetails {
     other: {
       "official-artwork": {
         front_default: string;
-      }
-    }
+      };
+    };
   };
 }
 
@@ -50,7 +50,7 @@ const PokemonList = () => {
   useEffect(() => {
     const fetchPokemonData = async () => {
       const fetchedPokemonDetails: PokemonDetails[] =
-        await fetchAllPokemon();
+        await fetchAdditionalPokemon(offset);
       setPokemonData(fetchedPokemonDetails);
       setIsLoading(false);
     };
@@ -70,7 +70,6 @@ const PokemonList = () => {
     }
   };
 
-
   // TODO: Figure out how to query pokemon based on the input while having infinite scrolling running in the background. Best bet would probably be fetching from an API with name as argument "api_url/pokemon/{name}" and to fetch every time a user changes the value
 
   // filters the list of pokemon based on the input value
@@ -80,14 +79,13 @@ const PokemonList = () => {
       : pokemon.name.includes(inputText.trim().toLowerCase())
   );
 
-
   return (
     <>
       <div className="flex flex-wrap justify-center items-center mt-20 mb-4">
         <SearchInput inputText={inputText} setInputText={setInputText} />
         <FilterByType />
       </div>
-      <div className="flex flex-col justify-center items-center md:flex-grow">
+      <div className="flex flex-col justify-center items-center  md:flex-grow">
         {isLoading ? (
           <div className="text-center max-md:mt-24">
             <div className="loading loading-spinner loading-lg text-error"></div>
@@ -96,13 +94,13 @@ const PokemonList = () => {
         ) : filteredPokemonList.length === 0 ? (
           <p className="text-2xl max-md:mt-24">Pokémon not found</p>
         ) : (
-          // <InfiniteScroll
-          //   dataLength={pokemonData.length}
-          //   next={fetchMorePokemonData}
-          //   hasMore={hasMore}
-          //   loader={null}
-          // >
-            <div className="flex flex-wrap justify-center bg-gray-200">
+          <InfiniteScroll
+            dataLength={pokemonData.length}
+            next={fetchMorePokemonData}
+            hasMore={hasMore}
+            loader={null}
+          >
+            <div className="flex flex-wrap justify-center">
               {filteredPokemonList.map((pokemon) => (
                 <Link
                   to={`/pokemon/${pokemon.name}`}
@@ -111,12 +109,14 @@ const PokemonList = () => {
                 >
                   <PokemonCard
                     name={pokemon.name}
-                    imageUrl={pokemon.sprites.other["official-artwork"].front_default}
+                    imageUrl={
+                      pokemon.sprites.other["official-artwork"].front_default
+                    }
                   />
                 </Link>
               ))}
             </div>
-          // </InfiniteScroll>
+          </InfiniteScroll>
         )}
       </div>
       <BackToTopButton />

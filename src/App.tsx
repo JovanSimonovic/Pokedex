@@ -18,7 +18,7 @@ function App() {
   }, [location]);
 
   return (
-    <div className="flex flex-col h-screen bg-gray-200">
+    <div className="flex flex-col h-screen">
       {navbarVisible && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
