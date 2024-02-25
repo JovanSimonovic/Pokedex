@@ -3,9 +3,20 @@ import { useEffect, useState } from "react";
 const ThemeSwitch = () => {
   const [theme, setTheme] = useState("light");
 
+  // sets theme based on the previous value and
+  // saves preferred theme in the local storage
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
   };
+
+  // checks if preferred theme exists in the
+  // local storage and sets it if it does
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) setTheme(savedTheme);
+  }, []);
 
   useEffect(() => {
     document.querySelector("html")?.setAttribute("data-theme", theme);
@@ -30,8 +41,9 @@ const ThemeSwitch = () => {
       <input
         type="checkbox"
         value="dark"
-        onClick={toggleTheme}
         className="toggle theme-controller"
+        onChange={toggleTheme}
+        checked={theme === "dark"}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"

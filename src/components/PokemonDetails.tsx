@@ -52,7 +52,7 @@ const PokemonDetails = () => {
   }, [name]);
 
   return (
-    <div className="mt-20 flex flex-col items-center md:h-screen md:justify-center md:mt-0">
+    <div className="mt-20 flex flex-col items-center justify-center ">
       {pokemonDetails ? (
         <>
           <div className="flex flex-col items-center">
@@ -63,7 +63,7 @@ const PokemonDetails = () => {
               height="250px"
             />
             <div className="text-xl font-semibold">
-              #{pokemonDetails.id.toString().padStart(3, "0")}
+              #{pokemonDetails.id.toString().padStart(4, "0")}
             </div>
             <h1 className="text-4xl font-semibold">
               {pokemonDetails.name
