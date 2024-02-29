@@ -1,9 +1,17 @@
-const FilterByType = () => {
+interface FilterByTypeProps {
+  setSelectedType: (type: string) => void;
+}
+
+const FilterByType = ({ setSelectedType }: FilterByTypeProps) => {
   return (
-    <select className="select select-bordered mt-2 w-full max-w-xs sm:w-auto sm:mt-0 sm:ml-2">
-      <option disabled selected>
+    <select
+      className="select select-bordered mt-2 w-full max-w-xs sm:w-auto sm:mt-0 sm:ml-2"
+      onChange={(e) => setSelectedType(e.target.value)}
+    >
+      <option disabled selected value="">
         Filter by type
       </option>
+      <option value="">All</option>
       <option value="normal">Normal</option>
       <option value="fire">Fire</option>
       <option value="water">Water</option>

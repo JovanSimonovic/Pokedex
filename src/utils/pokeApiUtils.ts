@@ -75,7 +75,7 @@ export const fetchAllPokemon = async (): Promise<PokemonDetails[]> => {
 };
 
 // fetches the list of first 386 Pokemon from the API in batches of 40
-const totalPokemonCount = 386;
+const totalPokemonCount = 1025;
 
 export const fetchAdditionalPokemon = async (
   offset: number
